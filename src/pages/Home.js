@@ -1,17 +1,18 @@
-import { useEffect } from 'react';
-import Header from '../components/Header';
-import Welcome from '../components/Welcome';
-import Experience from '../components/Experience';
+import { useEffect } from "react";
+import Welcome from "../components/Welcome";
+import Experience from "../components/Experience";
 
-const Homepage = () => {
+const Home = () => {
   useEffect(() => {
-    const scrollAnimElements = document.querySelectorAll('[data-animate-on-scroll]');
+    const scrollAnimElements = document.querySelectorAll(
+      "[data-animate-on-scroll]"
+    );
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting || entry.intersectionRatio > 0) {
             const targetElement = entry.target;
-            targetElement.classList.add('animate');
+            targetElement.classList.add("animate");
             observer.unobserve(targetElement);
           }
         }
@@ -42,4 +43,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Home;

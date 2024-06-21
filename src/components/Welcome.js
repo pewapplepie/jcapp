@@ -31,9 +31,10 @@ const Welcome = ({ className = "" }) => {
         </div>
       </div>
       <div className="flex flex-col items-center w-full relative z-10">
+        
         <div className="w-full h-auto flex flex-row items-start justify-between gap-4">
           <div className="flex flex-col items-start leading-tight">
-            <h1 className=" text-transparent bg-clip-text bg-gradient-to-r from-blue to-white tracking-tight font-normal">
+            <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-white tracking-tight font-normal">
               <span className="text-4xl">Hi! I’m Jeffrey</span>
               <br />
               <br />
