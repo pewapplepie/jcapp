@@ -16,4 +16,5 @@ code {
     monospace;
 }
 /* Add more nth-child styles as needed */
+@import './animation.css';
 
