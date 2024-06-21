@@ -14,7 +14,7 @@ const Header = ({ jeffreychenhaColor }) => {
     <header className="w-full flex flex-row items-start justify-between mt-4 mb-10 pt-4 px-8 pb-4 box-border gap-4 text-left text-base text-blue font-newsreader bg-white">
       <div className="flex flex-col items-start justify-start cursor-pointer">
         <Link to="/" className={`${location.pathname === '/' ? 'text-blue' : 'text-black'} text-3xl font-bold no-underline`}>
-          My React App
+          jeffreychen.me
         </Link>
       </div>
       <div className="flex flex-row items-start justify-start gap-10 text-center text-base text-black font-newsreader">
