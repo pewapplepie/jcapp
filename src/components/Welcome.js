@@ -1,11 +1,9 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import profilepic from "../assets/images/image.png";
 
 const Welcome = ({ className = "" }) => {
   const navigate = useNavigate();
-
   const onButtonClick = useCallback(() => {
     navigate("/about");
   }, [navigate]);
@@ -17,54 +15,41 @@ const Welcome = ({ className = "" }) => {
       <div className="absolute inset-0 z-0">
         <div className="area w-full h-full">
           <ul className="circles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            {[...Array(10)].map((_, index) => (
+              <li key={index}></li>
+            ))}
           </ul>
         </div>
       </div>
       <div className="flex flex-col items-center w-full relative z-10">
-        
-        <div className="w-full h-auto flex flex-row items-start justify-between gap-4">
-          <div className="flex flex-col items-start leading-tight">
-            <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-white tracking-tight font-normal">
-              <span className="text-4xl">Hi! I’m Jeffrey</span>
-              <br />
-              <br />
-              <span className="animate-linear bg-gradient-to-r from-dark via-pink-500 to-dark bg-[length:200%_auto] bg-clip-text text-6xl font-bold text-transparent">
-                A passionate Quant professional
-              </span>
-              <br />
-              <br />
-              <span className="text-4xl">Developer + Researcher</span>
-            </h1>
-          </div>
-          <div className="rounded-xl p-2">
-            <img
-              className="h-[300px] w-[350px] rounded-xl object-cover"
-              loading="lazy"
-              alt="Profile"
-              src={profilepic}
-            />
-          </div>
+        <div className="w-full h-auto flex flex-col items-center justify-center">
+          <h1 className="text-center">
+            <span className="text-4xl text-darkslategray font-semibold">
+              Hi! I'm Jeffrey
+            </span>
+            <br />
+            <br />
+            <span
+              className="animate-linear bg-gradient-to-r from-primary via-secondary to-tertiary bg-[length:200%_auto] bg-clip-text text-6xl font-bold text-transparent"
+              style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.1)" }}
+            >
+              A Quant, Finance & Tech lover
+            </span>
+            <br />
+            <br />
+            <span className="text-4xl text-darkslategray font-semibold">
+              made of 🐶
+            </span>
+          </h1>
         </div>
       </div>
-      <div className="flex justify-center w-full text-sm font-inter relative z-10">
-        <div className="flex flex-col items-center justify-start gap-4">
-          <button
-            className="cursor-pointer bg-[#262f3f] hover:bg-[blue] text-white text-xl rounded-full py-2 px-6 hover:opacity-75 transition-opacity"
-            onClick={onButtonClick}
-          >
-            Learn More
-          </button>
-        </div>
+      <div className="flex justify-center w-full text-sm font-inter relative z-10 mt-8">
+        <button
+          className="cursor-pointer bg-primary hover:bg-dark text-white text-xl rounded-full py-2 px-6 hover:opacity-75 transition-opacity"
+          onClick={onButtonClick}
+        >
+          Learn More
+        </button>
       </div>
     </div>
   );
