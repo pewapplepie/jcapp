@@ -4,7 +4,6 @@ const Resume = ({ className = "" }) => {
   return (
     <div
       className={`self-stretch flex flex-col items-start justify-start gap-12 max-w-full shrink-0 text-left text-9xl font-inter p-8 rounded-lg ${className}`}
-      data-animate-on-scroll
     >
       <div className="w-full flex flex-col items-start justify-start">
         <div className="flex flex-row items-start justify-start py-0 pr-0 pl-px">
