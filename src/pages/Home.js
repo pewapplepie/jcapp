@@ -1,43 +1,12 @@
-import { useEffect } from "react";
 import Welcome from "../components/Welcome";
-import Experience from "../components/Experience";
+import BlogPost from "../components/BlogPost";
 
 const Home = () => {
-  useEffect(() => {
-    const scrollAnimElements = document.querySelectorAll(
-      "[data-animate-on-scroll]"
-    );
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting || entry.intersectionRatio > 0) {
-            const targetElement = entry.target;
-            targetElement.classList.add("animate");
-            observer.unobserve(targetElement);
-          }
-        }
-      },
-      {
-        threshold: 0.15,
-      }
-    );
-
-    for (let i = 0; i < scrollAnimElements.length; i++) {
-      observer.observe(scrollAnimElements[i]);
-    }
-
-    return () => {
-      for (let i = 0; i < scrollAnimElements.length; i++) {
-        observer.unobserve(scrollAnimElements[i]);
-      }
-    };
-  }, []);
-
   return (
-    <div className="w-full relative bg-gray-100 overflow-hidden flex flex-col items-center justify-start box-border">
-      <section className="w-full flex flex-col items-start justify-start py-4 box-border gap-20 max-w-screen-lg">
+    <div className="w-full min-h-screen bg-transparent flex flex-col items-center justify-start">
+      <section className="w-full max-w-screen-lg flex flex-col items-center text-center gap-8 py-8">
         <Welcome />
-        <Experience />
+        <BlogPost />
       </section>
     </div>
   );

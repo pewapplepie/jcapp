@@ -12,7 +12,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.97.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,6 +23,11 @@
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true,
+      "es2021": true
+    },
     "extends": [
       "react-app",
       "react-app/jest"
@@ -43,6 +49,8 @@
     "autoprefixer": "^10.4.19",
     "gh-pages": "^6.1.1",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.7.2",
+    "webpack-merge": "^6.0.1"
   }
 }
