@@ -1,5 +1,7 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme, ButtonColors } from "../context/ThemeContext"; // Import the custom hook
+
 import PropTypes from "prop-types";
 
 const Welcome = ({ className = "" }) => {
@@ -7,12 +9,18 @@ const Welcome = ({ className = "" }) => {
   const onButtonClick = useCallback(() => {
     navigate("/about");
   }, [navigate]);
+  const { isDarkMode } = useTheme();
+  // const bgColor = isDarkMode ? "bg-primary" : "bg-light";
+  const button_bg = isDarkMode ? ButtonColors.bg_light : ButtonColors.bg_dark;
+  const button_txt = isDarkMode
+    ? ButtonColors.txt_dark
+    : ButtonColors.txt_light;
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-start gap-4 w-full max-w-full text-left text-black font-newsreader rounded-lg ${className}`}
+      className={`relative flex flex-col items-center justify-start gap-4 w-full max-w-full text-left font-newsreader rounded-lg ${className}`}
     >
-      <div className="absolute inset-0 z-0">
+      {/* <div className="absolute inset-0 z-0">
         <div className="area w-full h-full">
           <ul className="circles">
             {[...Array(10)].map((_, index) => (
@@ -20,24 +28,19 @@ const Welcome = ({ className = "" }) => {
             ))}
           </ul>
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-col items-center w-full relative z-10">
         <div className="w-full h-auto flex flex-col items-center justify-center">
           <h1 className="text-center">
-            <span className="text-4xl text-darkslategray font-semibold">
-              Hi! I'm Jeffrey
+            <span className="text-4xl font-semibold">Hi! I'm Jeffrey</span>
+            <br />
+            <br />
+            <span className="text-4xl font-semibold">
+              A Quant, Finance & Technology Lover
             </span>
             <br />
             <br />
-            <span
-              className="animate-linear bg-gradient-to-r from-primary via-secondary to-tertiary bg-[length:200%_auto] bg-clip-text text-6xl font-bold text-transparent"
-              style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.1)" }}
-            >
-              A Quant, Finance & Tech lover
-            </span>
-            <br />
-            <br />
-            <span className="text-4xl text-darkslategray font-semibold">
+            <span className="text-4xl text-light font-semibold">
               made of 🐶
             </span>
           </h1>
@@ -45,10 +48,10 @@ const Welcome = ({ className = "" }) => {
       </div>
       <div className="flex justify-center w-full text-sm font-inter relative z-10 mt-8">
         <button
-          className="cursor-pointer bg-primary hover:bg-dark text-white text-xl rounded-full py-2 px-6 hover:opacity-75 transition-opacity"
+          className={`cursor-pointer px-5 ${button_bg} ${button_txt} rounded-full border-0 hover:opacity-75 transition-opacity`}
           onClick={onButtonClick}
         >
-          Learn More
+          <h3>Learn More</h3>
         </button>
       </div>
     </div>
