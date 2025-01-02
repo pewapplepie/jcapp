@@ -256,12 +256,6 @@ function __wbg_get_imports() {
         getDataViewMemory0().setInt32(arg0 + 4 * 1, len1, true);
         getDataViewMemory0().setInt32(arg0 + 4 * 0, ptr1, true);
     };
-    imports.wbg.__wbg_timeEnd_dbebd0d2761b0584 = function(arg0, arg1) {
-        console.timeEnd(getStringFromWasm0(arg0, arg1));
-    };
-    imports.wbg.__wbg_time_dc523f4947decf6e = function(arg0, arg1) {
-        console.time(getStringFromWasm0(arg0, arg1));
-    };
     imports.wbg.__wbindgen_init_externref_table = function() {
         const table = wasm.__wbindgen_export_3;
         const offset = table.grow(4);
