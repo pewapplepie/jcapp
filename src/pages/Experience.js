@@ -15,6 +15,12 @@ const Resume = ({ className = "" }) => {
           <div className="flex flex-col items-start justify-start py-0 pr-0 pl-px gap-2">
             <div>
               <p className="m-0 text-xl">
+                Agency Pricing, Associate<b>@ Jp Morgan</b>
+              </p>
+              <p className="m-0 text-base">Sep 2024 - Present</p>
+            </div>
+            <div>
+              <p className="m-0 text-xl">
                 <b>Marine</b> @ Taiwan Marine Corp (Compulsory)
               </p>
               <p className="m-0 text-base">Oct 2023 - Apr 2024</p>
@@ -27,13 +33,13 @@ const Resume = ({ className = "" }) => {
             </div>
             <div>
               <p className="m-0 text-xl">
-                UCLA Joint Researcher <b>@ Western Asset Management</b>
+                Quant Research Intern<b>@ Western Asset Management</b>
               </p>
               <p className="m-0 text-base">Apr 2021 - Dec 2021</p>
             </div>
             <div>
               <p className="m-0 text-xl">
-                Derivative Strats <b>@ Cboe Global Markets</b>
+                Derivative Strats Intern<b>@ Cboe Global Markets</b>
               </p>
               <p className="m-0 text-base">Jun 2021 - Aug 2021</p>
             </div>
@@ -60,17 +66,6 @@ const Resume = ({ className = "" }) => {
           </div>
           <div>
             <p className="m-0 text-xl">
-              Graduate Certificate of Machine Learning <b>@ Cornell</b>
-            </p>
-            <ul className="m-0 font-inherit text-inherit pl-7">
-              <li className="mb-0 text-base">
-                Deep dive into various Machine Learning models and implement
-                them from scratch{" "}
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p className="m-0 text-xl">
               Bachelor of Science, Chemistry <b>@ NTU</b>
             </p>
             <ul className="m-0 font-inherit text-inherit pl-7">
@@ -82,50 +77,27 @@ const Resume = ({ className = "" }) => {
               </li>
             </ul>
           </div>
+          <div>
+            <p className="m-0 text-xl">
+              Graduate Certificate of Machine Learning <b>@ Cornell</b>
+            </p>
+            <ul className="m-0 font-inherit text-inherit pl-7">
+              <li className="mb-0 text-base">
+                Deep dive into various Machine Learning models and implement
+                them from scratch{" "}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-// Resume.propTypes = {
-//   className: PropTypes.string,
-// };
-
 const Experience = () => {
-  useEffect(() => {
-    const scrollAnimElements = document.querySelectorAll(
-      "[data-animate-on-scroll]"
-    );
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting || entry.intersectionRatio > 0) {
-            const targetElement = entry.target;
-            targetElement.classList.add("animate");
-            observer.unobserve(targetElement);
-          }
-        }
-      },
-      {
-        threshold: 0.15,
-      }
-    );
-
-    for (let i = 0; i < scrollAnimElements.length; i++) {
-      observer.observe(scrollAnimElements[i]);
-    }
-
-    return () => {
-      for (let i = 0; i < scrollAnimElements.length; i++) {
-        observer.unobserve(scrollAnimElements[i]);
-      }
-    };
-  }, []);
-
   return (
-    <div className="w-full relative overflow-hidden flex flex-col items-center justify-start box-border">
-      <section className="w-full flex flex-col items-start justify-start py-4 box-border gap-20 max-w-screen-lg">
+    <div className="w-full flex flex-col items-center py-8 ">
+      <section className="w-full max-w-4xl flex flex-col gap-16 px-6">
         <Resume />
       </section>
     </div>

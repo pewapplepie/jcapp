@@ -55,14 +55,14 @@ const Header = () => {
         {/* Blogs Link */}
         <div className="flex flex-col items-center justify-start pt-2">
           <Link
-            to="/blogs"
+            to="/cv"
             className={`relative leading-[21px] inline-block cursor-pointer text-xl text-light ${
-              isActive("/blogs")
+              isActive("/cv")
                 ? "font-bold underline decoration-3"
                 : "no-underline"
             }`}
           >
-            Stuff
+            CV
           </Link>
         </div>
 
