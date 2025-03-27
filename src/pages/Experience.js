@@ -15,7 +15,7 @@ const Resume = ({ className = "" }) => {
           <div className="flex flex-col items-start justify-start py-0 pr-0 pl-px gap-2">
             <div>
               <p className="m-0 text-xl">
-                Agency Pricing, Associate<b>@ Jp Morgan</b>
+                Associate<b>@ Jp Morgan</b>
               </p>
               <p className="m-0 text-base">Sep 2024 - Present</p>
             </div>
