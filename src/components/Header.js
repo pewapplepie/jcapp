@@ -55,6 +55,20 @@ const Header = () => {
         {/* Blogs Link */}
         <div className="flex flex-col items-center justify-start pt-2">
           <Link
+            to="/blogs"
+            className={`relative leading-[21px] inline-block cursor-pointer text-xl text-light ${
+              isActive("/blogs")
+                ? "font-bold underline decoration-3"
+                : "no-underline"
+            }`}
+          >
+            Blogs
+          </Link>
+        </div>
+
+        {/* CV Link */}
+        <div className="flex flex-col items-center justify-start pt-2">
+          <Link
             to="/cv"
             className={`relative leading-[21px] inline-block cursor-pointer text-xl text-light ${
               isActive("/cv")
@@ -63,6 +77,21 @@ const Header = () => {
             }`}
           >
             CV
+          </Link>
+        </div>
+
+        {/* Admin Link */}
+        <div className="flex flex-col items-center justify-start pt-2">
+          <Link
+            to="/admin"
+            className={`relative leading-[21px] inline-block cursor-pointer text-xl text-light text-xs font-bold ${
+              isActive("/admin")
+                ? "font-bold underline decoration-3"
+                : "no-underline"
+            }`}
+            title="Admin Panel"
+          >
+            ⚙️
           </Link>
         </div>
 

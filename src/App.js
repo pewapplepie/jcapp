@@ -5,7 +5,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { ThemeProvider, useTheme } from "./context/ThemeContext"; // Import ThemeProvider and useTheme
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import { AdminProvider } from "./context/AdminContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -13,9 +14,10 @@ import About from "./pages/About";
 import Blogs from "./pages/Blogs";
 import Experience from "./pages/Experience";
 import GamePage from "./pages/GamePage";
+import AdminPanel from "./pages/AdminPanel";
 
 function AppContent() {
-  const { isDarkMode } = useTheme(); // Access isDarkMode from context
+  const { isDarkMode } = useTheme();
 
   return (
     <div
@@ -30,6 +32,7 @@ function AppContent() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/cv" element={<Experience />} />
         <Route path="/rust_gameoflife" element={<GamePage />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
@@ -42,9 +45,11 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Router basename={baseName}>
-        <AppContent /> {/* Separate component to use useTheme */}
-      </Router>
+      <AdminProvider>
+        <Router basename={baseName}>
+          <AppContent />
+        </Router>
+      </AdminProvider>
     </ThemeProvider>
   );
 }

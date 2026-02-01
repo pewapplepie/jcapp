@@ -29,8 +29,8 @@ const About = () => {
   }, []);
 
   return (
-    <div className="w-full relative overflow-hidden flex flex-col items-start justify-start box-border">
-      <main className="flex-1 overflow-hidden flex flex-col items-start justify-center pt-9 pb-32 pr-24 pl-24 box-border gap-20 max-w-full">
+    <div className="w-full relative overflow-hidden flex flex-col items-center justify-start box-border">
+      <main className="flex-1 overflow-hidden flex flex-col items-center justify-start pt-9 pb-32 px-4 box-border gap-20 w-full max-w-full">
         <AboutMeContent />
       </main>
     </div>
