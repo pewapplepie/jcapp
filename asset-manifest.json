@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/jcapp/static/css/main.e7eccc15.css",
-    "main.js": "/jcapp/static/js/main.c7f8fbcf.js",
+    "main.css": "/jcapp/static/css/main.48c8a80e.css",
+    "main.js": "/jcapp/static/js/main.365968a0.js",
     "static/js/453.785134cd.chunk.js": "/jcapp/static/js/453.785134cd.chunk.js",
     "static/media/page11.png": "/jcapp/static/media/page11.09c76db3276b0466333f.png",
     "static/media/wasm_game_of_life_bg.wasm": "/jcapp/static/media/wasm_game_of_life_bg.ad5b69543c1b4d248f40.wasm",
@@ -9,12 +9,12 @@
     "static/media/instagramfilled.svg": "/jcapp/static/media/instagramfilled.ca752159ea6574fce37b96d8885ef7cc.svg",
     "static/media/linkedinrect.svg": "/jcapp/static/media/linkedinrect.0b6e4cee0a8f810d1ce1abab6acb5edf.svg",
     "index.html": "/jcapp/index.html",
-    "main.e7eccc15.css.map": "/jcapp/static/css/main.e7eccc15.css.map",
-    "main.c7f8fbcf.js.map": "/jcapp/static/js/main.c7f8fbcf.js.map",
+    "main.48c8a80e.css.map": "/jcapp/static/css/main.48c8a80e.css.map",
+    "main.365968a0.js.map": "/jcapp/static/js/main.365968a0.js.map",
     "453.785134cd.chunk.js.map": "/jcapp/static/js/453.785134cd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7eccc15.css",
-    "static/js/main.c7f8fbcf.js"
+    "static/css/main.48c8a80e.css",
+    "static/js/main.365968a0.js"
   ]
 }
