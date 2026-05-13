@@ -7,7 +7,7 @@ import AboutMeEditor from "../components/admin/AboutMeEditor";
 const AdminPanel = () => {
   const { isAuthenticated, logout, blogs, loading } = useAdmin();
   const { isDarkMode } = useTheme();
-  const [activeTab, setActiveTab] = useState("blogs");
+  const [activeTab, setActiveTab] = useState("projects");
 
   if (loading) {
     return (
@@ -44,14 +44,14 @@ const AdminPanel = () => {
         {/* Tabs */}
         <div className="flex gap-4 mb-8 border-b border-gray-300">
           <button
-            onClick={() => setActiveTab("blogs")}
+            onClick={() => setActiveTab("projects")}
             className={`px-6 py-3 font-semibold transition ${
-              activeTab === "blogs"
+              activeTab === "projects"
                 ? "border-b-4 border-light text-light"
                 : "text-gray-500"
             }`}
           >
-            Blog Posts ({blogs.length})
+            Projects ({blogs.length})
           </button>
           <button
             onClick={() => setActiveTab("about")}
@@ -61,13 +61,13 @@ const AdminPanel = () => {
                 : "text-gray-500"
             }`}
           >
-            About Me
+            About
           </button>
         </div>
 
         {/* Content */}
         <div className="bg-opacity-50 rounded-lg">
-          {activeTab === "blogs" && <BlogPostForm />}
+          {activeTab === "projects" && <BlogPostForm />}
           {activeTab === "about" && <AboutMeEditor />}
         </div>
       </div>

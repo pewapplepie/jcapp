@@ -38,7 +38,7 @@ const Header = () => {
         </button>
       </div>
       <div className="flex flex-row items-center justify-start gap-10 text-center">
-        {/* About Me Link */}
+        {/* About Link */}
         <div className="flex flex-col items-center justify-start pt-2">
           <Link
             to="/about"
@@ -48,35 +48,21 @@ const Header = () => {
                 : "no-underline"
             }`}
           >
-            About Me
+            About
           </Link>
         </div>
 
-        {/* Blogs Link */}
+        {/* Projects Link */}
         <div className="flex flex-col items-center justify-start pt-2">
           <Link
-            to="/blogs"
+            to="/projects"
             className={`relative leading-[21px] inline-block cursor-pointer text-xl text-light ${
-              isActive("/blogs")
+              isActive("/projects")
                 ? "font-bold underline decoration-3"
                 : "no-underline"
             }`}
           >
-            Blogs
-          </Link>
-        </div>
-
-        {/* CV Link */}
-        <div className="flex flex-col items-center justify-start pt-2">
-          <Link
-            to="/cv"
-            className={`relative leading-[21px] inline-block cursor-pointer text-xl text-light ${
-              isActive("/cv")
-                ? "font-bold underline decoration-3"
-                : "no-underline"
-            }`}
-          >
-            CV
+            Projects
           </Link>
         </div>
 

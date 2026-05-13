@@ -11,9 +11,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Blogs from "./pages/Blogs";
-import Experience from "./pages/Experience";
+import Projects from "./pages/Projects";
 import GamePage from "./pages/GamePage";
+import NewProjectPage from "./pages/NewProjectPage";
 import AdminPanel from "./pages/AdminPanel";
 
 function AppContent() {
@@ -29,9 +29,11 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/cv" element={<Experience />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/blogs" element={<Navigate to="/projects" replace />} />
+        <Route path="/cv" element={<Navigate to="/about" replace />} />
         <Route path="/rust_gameoflife" element={<GamePage />} />
+        <Route path="/new_project" element={<NewProjectPage />} />
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

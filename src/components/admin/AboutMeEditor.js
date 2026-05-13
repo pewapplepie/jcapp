@@ -3,36 +3,53 @@ import { useAdmin } from "../../context/AdminContext";
 import { useTheme } from "../../context/ThemeContext";
 import CVEditor from "./CVEditor";
 
+const applyTitlePrefix = (title, prefix) => {
+  const cleanTitle = title.replace(/^#{1,3}\s/, "").trimStart();
+
+  if (!prefix) {
+    return cleanTitle;
+  }
+
+  return `${prefix}${cleanTitle}`;
+};
+
+const renderPreviewTitle = (title) => {
+  const trimmedTitle = title.trim();
+
+  if (trimmedTitle.startsWith("# ")) {
+    return <div className="m-0 text-base font-newsreader font-medium leading-8 md:text-[1.05rem]">{trimmedTitle.replace(/^#\s/, "")}</div>;
+  }
+
+  if (trimmedTitle.startsWith("## ")) {
+    return <div className="m-0 text-base font-semibold uppercase tracking-[0.18em] leading-8 md:text-[1.05rem]">{trimmedTitle.replace(/^##\s/, "")}</div>;
+  }
+
+  if (trimmedTitle.startsWith("### ")) {
+    return <div className="m-0 text-base font-semibold leading-8 md:text-[1.05rem]">{trimmedTitle.replace(/^###\s/, "")}</div>;
+  }
+
+  return <div className="m-0 text-base font-medium leading-8 md:text-[1.05rem]">{title}</div>;
+};
+
 const AboutMeEditor = () => {
-  const { aboutContent, getInTouchContent, updateAboutContent, updateGetInTouchContent } = useAdmin();
+  const { getInTouchContent, updateGetInTouchContent } = useAdmin();
   const { isDarkMode } = useTheme();
   const [activeTab, setActiveTab] = useState("about");
-  const [isEditingAbout, setIsEditingAbout] = useState(false);
   const [isEditingGetInTouch, setIsEditingGetInTouch] = useState(false);
-  const [editAboutContent, setEditAboutContent] = useState(aboutContent);
   const [editGetInTouchContent, setEditGetInTouchContent] = useState(
     getInTouchContent
   );
-
-  const handleAboutChange = (e) => {
-    const { name, value } = e.target;
-    setEditAboutContent((prev) => ({ ...prev, [name]: value }));
-  };
 
   const handleGetInTouchChange = (e) => {
     const { name, value } = e.target;
     setEditGetInTouchContent((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveAbout = () => {
-    updateAboutContent(editAboutContent);
-    setIsEditingAbout(false);
-    alert("About Me content updated successfully!");
-  };
-
-  const handleCancelAbout = () => {
-    setEditAboutContent(aboutContent);
-    setIsEditingAbout(false);
+  const setGetInTouchTitleStyle = (prefix) => {
+    setEditGetInTouchContent((prev) => ({
+      ...prev,
+      title: applyTitlePrefix(prev.title, prefix),
+    }));
   };
 
   const handleSaveGetInTouch = () => {
@@ -58,7 +75,7 @@ const AboutMeEditor = () => {
               : "text-gray-500"
           }`}
         >
-          About Me
+          About
         </button>
         <button
           onClick={() => setActiveTab("getInTouch")}
@@ -68,133 +85,18 @@ const AboutMeEditor = () => {
               : "text-gray-500"
           }`}
         >
-          Get in Touch
-        </button>
-        <button
-          onClick={() => setActiveTab("cv")}
-          className={`px-6 py-3 font-semibold transition ${
-            activeTab === "cv"
-              ? "border-b-4 border-light text-light"
-              : "text-gray-500"
-          }`}
-        >
-          CV/Experience
+          About Intro
         </button>
       </div>
 
-      {/* About Me Tab */}
+      {/* About Tab */}
       {activeTab === "about" && (
         <div
           className={`p-6 rounded-lg ${
             isDarkMode ? "bg-gray-900" : "bg-gray-50"
           }`}
         >
-          {!isEditingAbout ? (
-            <>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">About Me</h2>
-                <button
-                  onClick={() => setIsEditingAbout(true)}
-                  className="px-6 py-2 bg-light text-black rounded-lg hover:opacity-80 transition font-semibold"
-                >
-                  Edit
-                </button>
-              </div>
-              <div
-                className={`p-6 rounded-lg ${
-                  isDarkMode ? "bg-gray-800" : "bg-white"
-                }`}
-              >
-                <h3 className="text-xl font-bold mb-4">
-                  {editAboutContent.title}
-                </h3>
-                <p className="text-base whitespace-pre-wrap leading-relaxed">
-                  {editAboutContent.content}
-                </p>
-              </div>
-            </>
-          ) : (
-            <>
-              <h2 className="text-2xl font-bold mb-6">Edit About Me Content</h2>
-              <div className="space-y-4">
-                {/* Title */}
-                <div>
-                  <label className="block text-sm font-semibold mb-2">
-                    Section Title
-                  </label>
-                  <input
-                    type="text"
-                    name="title"
-                    value={editAboutContent.title}
-                    onChange={handleAboutChange}
-                    placeholder="Section title"
-                    className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none ${
-                      isDarkMode
-                        ? "bg-gray-800 text-white"
-                        : "bg-white text-black"
-                    }`}
-                  />
-                </div>
-
-                {/* Content */}
-                <div>
-                  <label className="block text-sm font-semibold mb-2">
-                    Content
-                  </label>
-                  <textarea
-                    name="content"
-                    value={editAboutContent.content}
-                    onChange={handleAboutChange}
-                    placeholder="Write your about me content here..."
-                    rows="12"
-                    className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none font-sans ${
-                      isDarkMode
-                        ? "bg-gray-800 text-white"
-                        : "bg-white text-black"
-                    }`}
-                  />
-                  <p className="text-xs text-gray-500 mt-2">
-                    Tip: Use new lines to create paragraphs
-                  </p>
-                </div>
-
-                {/* Preview */}
-                <div>
-                  <label className="block text-sm font-semibold mb-2">
-                    Preview
-                  </label>
-                  <div
-                    className={`p-6 rounded-lg ${
-                      isDarkMode ? "bg-gray-800" : "bg-gray-100"
-                    }`}
-                  >
-                    <h3 className="text-xl font-bold mb-4">
-                      {editAboutContent.title}
-                    </h3>
-                    <p className="text-base whitespace-pre-wrap leading-relaxed">
-                      {editAboutContent.content}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Buttons */}
-                <div className="flex gap-4 justify-end pt-4">
-                  <button
-                    onClick={handleCancelAbout}
-                    className="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition font-semibold"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSaveAbout}
-                    className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold"
-                  >
-                    Save Changes
-                  </button>
-                </div>
-              </div>
-            </>
-          )}
+          <CVEditor />
         </div>
       )}
 
@@ -208,7 +110,7 @@ const AboutMeEditor = () => {
           {!isEditingGetInTouch ? (
             <>
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Get in Touch</h2>
+                <h2 className="text-2xl font-bold">About Intro</h2>
                 <button
                   onClick={() => setIsEditingGetInTouch(true)}
                   className="px-6 py-2 bg-light text-black rounded-lg hover:opacity-80 transition font-semibold"
@@ -232,7 +134,7 @@ const AboutMeEditor = () => {
           ) : (
             <>
               <h2 className="text-2xl font-bold mb-6">
-                Edit Get in Touch Content
+                Edit About Intro
               </h2>
               <div className="space-y-4">
                 {/* Title */}
@@ -240,6 +142,52 @@ const AboutMeEditor = () => {
                   <label className="block text-sm font-semibold mb-2">
                     Section Title
                   </label>
+                  <div className="mb-3 flex gap-2 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => setGetInTouchTitleStyle("")}
+                      className={`px-3 py-2 rounded-lg transition ${
+                        isDarkMode
+                          ? "bg-gray-700 hover:bg-gray-600 text-white"
+                          : "bg-gray-200 hover:bg-gray-300 text-black"
+                      }`}
+                    >
+                      Default
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setGetInTouchTitleStyle("# ")}
+                      className={`px-3 py-2 rounded-lg transition ${
+                        isDarkMode
+                          ? "bg-gray-700 hover:bg-gray-600 text-white"
+                          : "bg-gray-200 hover:bg-gray-300 text-black"
+                      }`}
+                    >
+                      H1
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setGetInTouchTitleStyle("## ")}
+                      className={`px-3 py-2 rounded-lg transition ${
+                        isDarkMode
+                          ? "bg-gray-700 hover:bg-gray-600 text-white"
+                          : "bg-gray-200 hover:bg-gray-300 text-black"
+                      }`}
+                    >
+                      H2
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setGetInTouchTitleStyle("### ")}
+                      className={`px-3 py-2 rounded-lg transition ${
+                        isDarkMode
+                          ? "bg-gray-700 hover:bg-gray-600 text-white"
+                          : "bg-gray-200 hover:bg-gray-300 text-black"
+                      }`}
+                    >
+                      H3
+                    </button>
+                  </div>
                   <input
                     type="text"
                     name="title"
@@ -252,6 +200,9 @@ const AboutMeEditor = () => {
                         : "bg-white text-black"
                     }`}
                   />
+                  <p className="text-xs text-gray-500 mt-2">
+                    This controls the main About page header.
+                  </p>
                 </div>
 
                 {/* Content */}
@@ -263,7 +214,7 @@ const AboutMeEditor = () => {
                     name="content"
                     value={editGetInTouchContent.content}
                     onChange={handleGetInTouchChange}
-                    placeholder="Write your get in touch content here..."
+                    placeholder="Write your about intro content here..."
                     rows="12"
                     className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none font-sans ${
                       isDarkMode
@@ -286,9 +237,9 @@ const AboutMeEditor = () => {
                       isDarkMode ? "bg-gray-800" : "bg-gray-100"
                     }`}
                   >
-                    <h3 className="text-xl font-bold mb-4">
-                      {editGetInTouchContent.title}
-                    </h3>
+                    <div className="mb-4">
+                      {renderPreviewTitle(editGetInTouchContent.title)}
+                    </div>
                     <p className="text-base whitespace-pre-wrap leading-relaxed">
                       {editGetInTouchContent.content}
                     </p>
@@ -316,16 +267,6 @@ const AboutMeEditor = () => {
         </div>
       )}
 
-      {/* CV Tab */}
-      {activeTab === "cv" && (
-        <div
-          className={`p-6 rounded-lg ${
-            isDarkMode ? "bg-gray-900" : "bg-gray-50"
-          }`}
-        >
-          <CVEditor />
-        </div>
-      )}
     </div>
   );
 };

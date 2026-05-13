@@ -95,7 +95,7 @@ const BlogPostForm = () => {
         }`}
       >
         <h2 className="text-2xl font-bold mb-6">
-          {editingId ? "Edit Blog Post" : "Add New Blog Post"}
+          {editingId ? "Edit Project" : "Add New Project"}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -109,7 +109,7 @@ const BlogPostForm = () => {
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
-                placeholder="Blog post title"
+                placeholder="Project title"
                 className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none box-border ${
                   isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
                 }`}
@@ -227,7 +227,7 @@ const BlogPostForm = () => {
               type="submit"
               className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold"
             >
-              {editingId ? "Update" : "Add"} Blog Post
+              {editingId ? "Update" : "Add"} Project
             </button>
           </div>
         </form>
@@ -236,11 +236,11 @@ const BlogPostForm = () => {
       {/* Blog List */}
       <div>
         <h2 className="text-2xl font-bold mb-4">
-          Blog Posts ({blogs.length})
+          Projects ({blogs.length})
         </h2>
         <div className="space-y-4">
           {blogs.length === 0 ? (
-            <p className="text-gray-500">No blog posts yet. Create one!</p>
+            <p className="text-gray-500">No projects yet. Create one!</p>
           ) : (
             blogs.map((blog) => (
               <div

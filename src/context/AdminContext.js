@@ -39,15 +39,18 @@ const DEFAULT_BLOGS = [
     description: "Conway's game of life implemented in Rust with WebAssembly",
     link: "rust_gameoflife",
   },
+  {
+    id: 4,
+    title: "My New Project",
+    category: "project",
+    tags: ["react", "demo"],
+    description: "A placeholder for my new awesome project.",
+    link: "new_project",
+  },
 ];
 
-const DEFAULT_ABOUT_CONTENT = {
-  title: "About",
-  content: "Add your about me content here. You can edit this from the admin panel.",
-};
-
 const DEFAULT_GET_IN_TOUCH = {
-  title: "Get in Touch",
+  title: "About",
   content:
     "My recent focus is on building a tech + education startup. Still in stealth mode. Will update more in future! Exciting!!!\n\nI'd love to collaborate so don't hesitate to connect with me whether it's a new project or just to share and explore ideas.",
 };
@@ -55,17 +58,17 @@ const DEFAULT_GET_IN_TOUCH = {
 const DEFAULT_CV_CONTENT = {
   workExperience: {
     title: "Work Experience",
-    content: "Add your work experience here. Use **bold**, *italic*, • for bullets, and tabs for indentation.",
+    content:
+      "Role / Company, Year\nShort context here\n• Key result\n\nNext role / Company, Year\nShort context here",
   },
   education: {
     title: "Education",
-    content: "Add your education details here. Use **bold**, *italic*, • for bullets, and tabs for indentation.",
+    content: "Degree / School, Year\nShort context here",
   },
 };
 
 export const AdminProvider = ({ children }) => {
   const [blogs, setBlogs] = useState([]);
-  const [aboutContent, setAboutContent] = useState(DEFAULT_ABOUT_CONTENT);
   const [getInTouchContent, setGetInTouchContent] = useState(DEFAULT_GET_IN_TOUCH);
   const [cvContent, setCVContent] = useState(DEFAULT_CV_CONTENT);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -111,17 +114,10 @@ export const AdminProvider = ({ children }) => {
           setBlogs(blogsData);
         }
 
-        // Load about content
-        const aboutDoc = await getDocs(collection(db, "content"));
-        const aboutData = aboutDoc.docs.find((d) => d.id === "about");
-        if (aboutData) {
-          setAboutContent(aboutData.data());
-        } else {
-          await setDoc(doc(db, "content", "about"), DEFAULT_ABOUT_CONTENT);
-        }
+        const contentSnapshot = await getDocs(collection(db, "content"));
 
         // Load get in touch content
-        const getInTouchData = aboutDoc.docs.find((d) => d.id === "getInTouch");
+        const getInTouchData = contentSnapshot.docs.find((d) => d.id === "getInTouch");
         if (getInTouchData) {
           setGetInTouchContent(getInTouchData.data());
         } else {
@@ -129,7 +125,7 @@ export const AdminProvider = ({ children }) => {
         }
 
         // Load CV content
-        const cvData = aboutDoc.docs.find((d) => d.id === "cv");
+        const cvData = contentSnapshot.docs.find((d) => d.id === "cv");
         if (cvData) {
           setCVContent(cvData.data());
         } else {
@@ -139,7 +135,6 @@ export const AdminProvider = ({ children }) => {
         console.error("Error initializing Firebase data:", error);
         // Fallback to defaults if Firebase fails
         setBlogs(DEFAULT_BLOGS);
-        setAboutContent(DEFAULT_ABOUT_CONTENT);
         setGetInTouchContent(DEFAULT_GET_IN_TOUCH);
         setCVContent(DEFAULT_CV_CONTENT);
       } finally {
@@ -208,16 +203,6 @@ export const AdminProvider = ({ children }) => {
     }
   };
 
-  const updateAboutContent = async (content) => {
-    try {
-      await setDoc(doc(db, "content", "about"), content);
-      setAboutContent(content);
-    } catch (error) {
-      console.error("Error updating about content:", error);
-      throw error;
-    }
-  };
-
   const updateGetInTouchContent = async (content) => {
     try {
       await setDoc(doc(db, "content", "getInTouch"), content);
@@ -242,7 +227,6 @@ export const AdminProvider = ({ children }) => {
     <AdminContext.Provider
       value={{
         blogs,
-        aboutContent,
         getInTouchContent,
         cvContent,
         isAuthenticated,
@@ -253,7 +237,6 @@ export const AdminProvider = ({ children }) => {
         addBlog,
         updateBlog,
         deleteBlog,
-        updateAboutContent,
         updateGetInTouchContent,
         updateCVContent,
       }}

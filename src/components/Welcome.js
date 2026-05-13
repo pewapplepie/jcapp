@@ -36,7 +36,7 @@ const Welcome = ({ className = "" }) => {
             <br />
             <br />
             <span className="text-4xl font-semibold">
-              A Quant, Finance & Technology Lover
+              Quant Trader, Researcher and Algo Developer
             </span>
             <br />
             <br />

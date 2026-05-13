@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { useAdmin } from "../context/AdminContext";
 
-const BlogPost = ({ title, category, tags, description, link }) => {
+const ProjectCard = ({ title, category, tags, description, link }) => {
   const { isDarkMode } = useTheme();
   const isExternalLink = link.startsWith("http");
 
@@ -51,13 +51,13 @@ const BlogPost = ({ title, category, tags, description, link }) => {
   );
 };
 
-const Blogs = () => {
+const Projects = () => {
   const { blogs } = useAdmin();
   const { isDarkMode } = useTheme();
   const [sortBy, setSortBy] = useState("newest");
 
-  const getSortedBlogs = () => {
-    let sorted = [...blogs];
+  const getSortedProjects = () => {
+    const sorted = [...blogs];
 
     switch (sortBy) {
       case "title":
@@ -75,14 +75,13 @@ const Blogs = () => {
     return sorted;
   };
 
-  const sortedBlogs = getSortedBlogs();
+  const sortedProjects = getSortedProjects();
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
       <div className="flex flex-col gap-6">
         <h2 className="text-4xl font-bold text-center">Projects</h2>
 
-        {/* Sorting Controls */}
         {blogs.length > 0 && (
           <div className="flex flex-wrap items-center justify-center gap-4">
             <label className="font-semibold">Sort by:</label>
@@ -107,8 +106,8 @@ const Blogs = () => {
         <p className="text-center text-gray-500 mt-8">No projects yet.</p>
       ) : (
         <div className="grid gap-8 mt-8">
-          {sortedBlogs.map((blog) => (
-            <BlogPost key={blog.id} {...blog} />
+          {sortedProjects.map((project) => (
+            <ProjectCard key={project.id} {...project} />
           ))}
         </div>
       )}
@@ -116,4 +115,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default Projects;
