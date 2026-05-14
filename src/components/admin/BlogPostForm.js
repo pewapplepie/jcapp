@@ -110,8 +110,10 @@ const BlogPostForm = () => {
                 value={formData.title}
                 onChange={handleInputChange}
                 placeholder="Project title"
-                className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none box-border ${
-                  isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 box-border ${
+                  isDarkMode
+                    ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+                    : "bg-white text-black border-stone-300 focus:ring-stone-500"
                 }`}
               />
             </div>
@@ -127,8 +129,10 @@ const BlogPostForm = () => {
                 value={formData.category}
                 onChange={handleInputChange}
                 placeholder="e.g., rust, finance, data-science"
-                className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none box-border ${
-                  isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 box-border ${
+                  isDarkMode
+                    ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+                    : "bg-white text-black border-stone-300 focus:ring-stone-500"
                 }`}
               />
             </div>
@@ -149,8 +153,10 @@ const BlogPostForm = () => {
                   }
                 }}
                 placeholder="Add tag and press Enter"
-                className={`flex-1 px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none box-border ${
-                  isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+                className={`flex-1 px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 box-border ${
+                  isDarkMode
+                    ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+                    : "bg-white text-black border-stone-300 focus:ring-stone-500"
                 }`}
               />
               <button
@@ -191,8 +197,10 @@ const BlogPostForm = () => {
               onChange={handleInputChange}
               placeholder="Write a description"
               rows="4"
-              className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none box-border ${
-                isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+              className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 box-border ${
+                isDarkMode
+                  ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+                  : "bg-white text-black border-stone-300 focus:ring-stone-500"
               }`}
             />
           </div>
@@ -206,8 +214,10 @@ const BlogPostForm = () => {
               value={formData.link}
               onChange={handleInputChange}
               placeholder="Internal route (e.g., rust_gameoflife) or external URL"
-              className={`box-border w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none ${
-                isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+              className={`box-border w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 ${
+                isDarkMode
+                  ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+                  : "bg-white text-black border-stone-300 focus:ring-stone-500"
               }`}
             />
           </div>

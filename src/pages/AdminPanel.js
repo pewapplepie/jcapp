@@ -42,23 +42,33 @@ const AdminPanel = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-4 mb-8 border-b border-gray-300">
+        <div className={`flex gap-1 mb-8 border-b ${
+          isDarkMode ? "border-stone-700" : "border-stone-300"
+        }`}>
           <button
             onClick={() => setActiveTab("projects")}
-            className={`px-6 py-3 font-semibold transition ${
+            className={`px-6 py-3 font-semibold transition rounded-t-md ${
               activeTab === "projects"
-                ? "border-b-4 border-light text-light"
-                : "text-gray-500"
+                ? isDarkMode
+                  ? "border-b-2 border-white text-white bg-stone-800"
+                  : "border-b-2 border-stone-900 text-stone-900 bg-stone-100"
+                : isDarkMode
+                  ? "text-stone-400 hover:text-stone-200"
+                  : "text-stone-500 hover:text-stone-700"
             }`}
           >
             Projects ({blogs.length})
           </button>
           <button
             onClick={() => setActiveTab("about")}
-            className={`px-6 py-3 font-semibold transition ${
+            className={`px-6 py-3 font-semibold transition rounded-t-md ${
               activeTab === "about"
-                ? "border-b-4 border-light text-light"
-                : "text-gray-500"
+                ? isDarkMode
+                  ? "border-b-2 border-white text-white bg-stone-800"
+                  : "border-b-2 border-stone-900 text-stone-900 bg-stone-100"
+                : isDarkMode
+                  ? "text-stone-400 hover:text-stone-200"
+                  : "text-stone-500 hover:text-stone-700"
             }`}
           >
             About

@@ -102,7 +102,7 @@ const getHeadingLevel = (line) => {
 
 const getHeadingClasses = (level, isDarkMode) => {
   const colorClass = isDarkMode ? "text-stone-100" : "text-slate-900";
-  const baseClass = `m-0 text-base leading-8 md:text-[1.05rem] ${colorClass}`;
+  const baseClass = `m-0 text-base leading-6 md:text-[1.05rem] ${colorClass}`;
 
   if (level === 1) {
     return `${baseClass} font-newsreader font-medium tracking-[0.02em]`;
@@ -144,20 +144,18 @@ const renderDetailLine = (line, isDarkMode, keyPrefix) => {
   return (
     <div
       key={keyPrefix}
-      className={`flex gap-4 ${isBullet ? "items-start" : "items-baseline"}`}
+      className={`flex ${isBullet ? "gap-4 items-start" : "items-baseline"}`}
       style={{ paddingLeft: `${indentation * 1.5}rem` }}
     >
-      <span
-        className={`mt-2 h-2.5 w-2.5 shrink-0 rounded-full ${
-          isBullet
-            ? isDarkMode
-              ? "bg-stone-300"
-              : "bg-slate-400"
-            : "bg-transparent"
-        }`}
-      />
+      {isBullet && (
+        <span
+          className={`mt-2 h-2.5 w-2.5 shrink-0 rounded-full ${
+            isDarkMode ? "bg-stone-300" : "bg-slate-400"
+          }`}
+        />
+      )}
       <div
-        className={`text-base leading-8 md:text-[1.05rem] ${
+        className={`text-base leading-6 md:text-[1.05rem] ${
           isDarkMode ? "text-stone-300" : "text-slate-700"
         }`}
       >
@@ -181,22 +179,22 @@ const ResumeSection = ({ title, content, isDarkMode }) => {
 
   return (
     <section className="space-y-8">
-      <div className="border-b border-current/10 pb-4">
+      <div>
         {renderHeadingText(
           title,
           isDarkMode,
-          `m-0 text-base font-medium leading-8 md:text-[1.05rem] ${
+          `m-0 text-base font-medium leading-6 md:text-[1.05rem] ${
             isDarkMode ? "text-stone-100" : "text-slate-900"
           }`
         )}
       </div>
       <div className="space-y-10">
         {entries.map((entry, index) => (
-          <article key={`${title}-${index}`} className="space-y-3">
+          <article key={`${title}-${index}`} className="space-y-1">
             {renderHeadingText(
               entry.heading,
               isDarkMode,
-              `m-0 text-base font-semibold leading-8 md:text-[1.05rem] ${
+              `m-0 text-base font-semibold leading-6 md:text-[1.05rem] ${
                 isDarkMode ? "text-stone-100" : "text-slate-900"
               }`
             )}
@@ -217,6 +215,16 @@ const ResumeSection = ({ title, content, isDarkMode }) => {
     </section>
   );
 };
+
+const SectionDivider = ({ isDarkMode }) => (
+  <div className="w-full" aria-hidden="true">
+    <div
+      className={`h-[1px] w-full ${
+        isDarkMode ? "bg-stone-300" : "bg-stone-500"
+      }`}
+    />
+  </div>
+);
 
 const About = () => {
   const { cvContent, getInTouchContent } = useAdmin();
@@ -243,22 +251,27 @@ const About = () => {
           </div>
         </section>
 
-        <section className="space-y-12">
-          {cvContent?.workExperience && (
-            <ResumeSection
-              title={cvContent.workExperience.title}
-              content={cvContent.workExperience.content}
-              isDarkMode={isDarkMode}
-            />
-          )}
-          {cvContent?.education && (
-            <ResumeSection
-              title={cvContent.education.title}
-              content={cvContent.education.content}
-              isDarkMode={isDarkMode}
-            />
-          )}
-        </section>
+        {cvContent?.workExperience && <SectionDivider isDarkMode={isDarkMode} />}
+
+        {cvContent?.workExperience && (
+          <ResumeSection
+            title={cvContent.workExperience.title}
+            content={cvContent.workExperience.content}
+            isDarkMode={isDarkMode}
+          />
+        )}
+
+        {cvContent?.workExperience && cvContent?.education && (
+          <SectionDivider isDarkMode={isDarkMode} />
+        )}
+
+        {cvContent?.education && (
+          <ResumeSection
+            title={cvContent.education.title}
+            content={cvContent.education.content}
+            isDarkMode={isDarkMode}
+          />
+        )}
       </main>
     </div>
   );

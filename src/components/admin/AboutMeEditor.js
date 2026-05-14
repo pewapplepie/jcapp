@@ -66,23 +66,33 @@ const AboutMeEditor = () => {
   return (
     <div className="space-y-6">
       {/* Tabs */}
-      <div className="flex gap-4 border-b border-gray-300">
+      <div className={`flex gap-1 border-b ${
+        isDarkMode ? "border-stone-700" : "border-stone-300"
+      }`}>
         <button
           onClick={() => setActiveTab("about")}
-          className={`px-6 py-3 font-semibold transition ${
+          className={`px-6 py-3 font-semibold transition rounded-t-md ${
             activeTab === "about"
-              ? "border-b-4 border-light text-light"
-              : "text-gray-500"
+              ? isDarkMode
+                ? "border-b-2 border-white text-white bg-stone-800"
+                : "border-b-2 border-stone-900 text-stone-900 bg-stone-100"
+              : isDarkMode
+                ? "text-stone-400 hover:text-stone-200"
+                : "text-stone-500 hover:text-stone-700"
           }`}
         >
           About
         </button>
         <button
           onClick={() => setActiveTab("getInTouch")}
-          className={`px-6 py-3 font-semibold transition ${
+          className={`px-6 py-3 font-semibold transition rounded-t-md ${
             activeTab === "getInTouch"
-              ? "border-b-4 border-light text-light"
-              : "text-gray-500"
+              ? isDarkMode
+                ? "border-b-2 border-white text-white bg-stone-800"
+                : "border-b-2 border-stone-900 text-stone-900 bg-stone-100"
+              : isDarkMode
+                ? "text-stone-400 hover:text-stone-200"
+                : "text-stone-500 hover:text-stone-700"
           }`}
         >
           About Intro
@@ -194,10 +204,10 @@ const AboutMeEditor = () => {
                     value={editGetInTouchContent.title}
                     onChange={handleGetInTouchChange}
                     placeholder="Section title"
-                    className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none ${
+                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 ${
                       isDarkMode
-                        ? "bg-gray-800 text-white"
-                        : "bg-white text-black"
+                        ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+                        : "bg-white text-black border-stone-300 focus:ring-stone-500"
                     }`}
                   />
                   <p className="text-xs text-gray-500 mt-2">
@@ -216,10 +226,10 @@ const AboutMeEditor = () => {
                     onChange={handleGetInTouchChange}
                     placeholder="Write your about intro content here..."
                     rows="12"
-                    className={`w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none font-sans ${
+                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 font-sans ${
                       isDarkMode
-                        ? "bg-gray-800 text-white"
-                        : "bg-white text-black"
+                        ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+                        : "bg-white text-black border-stone-300 focus:ring-stone-500"
                     }`}
                   />
                   <p className="text-xs text-gray-500 mt-2">

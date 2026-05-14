@@ -46,12 +46,18 @@ const renderPreviewLine = (line, key, isDarkMode) => {
   };
 
   return (
-    <div key={key} className="flex gap-3" style={style}>
-      <span
-        className={`mt-2 h-2 w-2 shrink-0 rounded-full ${
-          isBullet ? (isDarkMode ? "bg-gray-300" : "bg-gray-500") : "bg-transparent"
-        }`}
-      />
+    <div
+      key={key}
+      className={isBullet ? "flex gap-3" : "flex"}
+      style={style}
+    >
+      {isBullet && (
+        <span
+          className={`mt-2 h-2 w-2 shrink-0 rounded-full ${
+            isDarkMode ? "bg-gray-300" : "bg-gray-500"
+          }`}
+        />
+      )}
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   );
@@ -208,25 +214,29 @@ const CVEditor = () => {
       }`}>Edit About Page</h2>
 
       {/* Section Tabs */}
-      <div className={`flex gap-4 border-b ${
-        isDarkMode ? 'border-gray-600' : 'border-gray-300'
+      <div className={`flex gap-1 border-b ${
+        isDarkMode ? 'border-stone-700' : 'border-stone-300'
       }`}>
         <button
           onClick={() => setActiveSection("workExperience")}
-          className={`px-6 py-3 font-semibold transition ${
+          className={`px-6 py-3 font-semibold transition rounded-t-md ${
             activeSection === "workExperience"
-              ? "border-b-4 border-blue-500 text-blue-500"
-              : isDarkMode ? "text-gray-400" : "text-gray-500"
+              ? isDarkMode
+                ? "border-b-2 border-white text-white bg-stone-800"
+                : "border-b-2 border-stone-900 text-stone-900 bg-stone-100"
+              : isDarkMode ? "text-stone-400 hover:text-stone-200" : "text-stone-500 hover:text-stone-700"
           }`}
         >
           Work Experience
         </button>
         <button
           onClick={() => setActiveSection("education")}
-          className={`px-6 py-3 font-semibold transition ${
+          className={`px-6 py-3 font-semibold transition rounded-t-md ${
             activeSection === "education"
-              ? "border-b-4 border-blue-500 text-blue-500"
-              : isDarkMode ? "text-gray-400" : "text-gray-500"
+              ? isDarkMode
+                ? "border-b-2 border-white text-white bg-stone-800"
+                : "border-b-2 border-stone-900 text-stone-900 bg-stone-100"
+              : isDarkMode ? "text-stone-400 hover:text-stone-200" : "text-stone-500 hover:text-stone-700"
           }`}
         >
           Education
@@ -293,8 +303,10 @@ const CVEditor = () => {
           name="title"
           value={formData[activeSection].title}
           onChange={handleInputChange}
-          className={`box-border w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none ${
-            isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+          className={`box-border w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 ${
+            isDarkMode
+              ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+              : "bg-white text-black border-stone-300 focus:ring-stone-500"
           }`}
         />
         <p className={`mt-2 text-xs ${
@@ -403,8 +415,10 @@ const CVEditor = () => {
           onKeyDown={handleKeyDown}
           rows="16"
           placeholder="Role / Company, Year\nShort context here\n• Key result\n\nNext role / Company, Year\nShort context here"
-          className={`box-border w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none font-mono ${
-            isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+          className={`box-border w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 font-mono ${
+            isDarkMode
+              ? "bg-stone-800 text-white border-stone-600 focus:ring-stone-400"
+              : "bg-white text-black border-stone-300 focus:ring-stone-500"
           }`}
         />
         <p className={`mt-2 text-xs ${
@@ -420,8 +434,10 @@ const CVEditor = () => {
           isDarkMode ? 'text-white' : 'text-black'
         }`}>Preview</label>
         <div
-          className={`w-full px-4 py-3 rounded-lg border-2 border-gray-300 min-h-32 ${
-            isDarkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-black"
+          className={`w-full px-4 py-3 rounded-lg border-2 min-h-32 ${
+            isDarkMode
+              ? "bg-stone-900 text-white border-stone-700"
+              : "bg-stone-50 text-black border-stone-200"
           }`}
         >
           <div className="mb-4 border-b border-current/10 pb-3">
